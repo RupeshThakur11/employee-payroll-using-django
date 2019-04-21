@@ -116,8 +116,8 @@ def logout(request):
 
 def send_email(recipient, subject, body):
     import smtplib
-    user = "dhivarshiva96@gmail.com"
-    pwd = "Dish@nk@1"
+    user = "your_email"
+    pwd = "your_password"
     FROM = user
     TO = recipient if isinstance(recipient, list) else [recipient]
     SUBJECT = subject
