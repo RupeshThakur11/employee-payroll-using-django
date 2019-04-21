@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Office Panel</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Employee Payroll</a>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+
+            <a class="nav-link" href="/office/">Home</a>
+      </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="/office/view">View Records</span></a>
+          </li>
+        </ul>
+      <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-sm-11 col-md-9 col-lg-7 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Previous Salary Record</h5>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Employee</th>
+                  <th scope="col">Base Salary</th>
+                  <th scope="col">HRA</th>
+                  <th scope="col">DA</th>
+                  <th scope="col">TA</th>
+                  <th scope="col">PF</th>
+                  <th scope="col">Working Days</th>
+                  <th scope="col">Leaves</th>
+                  <th scope="col">Salary Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for m in queryset%}
+                <tr>
+                  <td>{{m.id}}</td>
+                  <td>{{m.emp_id}}</td>
+                  <td>{{m.base_salary}}</td>
+                  <td>{{m.hra}}</td>
+                  <td>{{m.da}}</td>
+                  <td>{{m.ta}}</td>
+                  <td>{{m.pf}}</td>
+                  <td>{{m.working_days}}</td>
+                  <td>{{m.leaves}}</td>
+                  <td>{{m.salary_date}}</td>
+                </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

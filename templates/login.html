@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Please Login</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Login for {{ type }}</h5>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+              <input type="hidden" value="{{ type }}" name="type">
+              <div class="form-label-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+              </div>
+              <br>
+              <div class="form-label-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+              </div>
+              <br>
+              <button class="btn btn-lg btn-outline-success btn-block" type="submit">Login</button>
+                {% if request.GET.failed %}
+                <p class="text-danger"> Login Failed </p>
+                {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

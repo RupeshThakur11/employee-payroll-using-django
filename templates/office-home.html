@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Office Panel</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Employee Payroll</a>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item active">
+        <a class="nav-link" href="/office">Home</span></a>
+      </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/office/view">View Records</a>
+          </li>
+        </ul>
+      <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Add Salary Record</h5>
+            <form action="" method="post">
+                  {% csrf_token %}
+                <div class="form-group">
+                <label for="employee">Select Employee</label>
+                <select class="form-control" id="employee" name="employee">
+                  <option>Select One Employee</option>
+                  {% for m in queryset %}
+                    <option value="{{ m.id }}" >{{ m }}</option>
+                  {% endfor %}
+                </select>
+              </div><br>
+
+              <div class="form-group">
+                <label for="base_salary">Base Salary</label>
+                <input type="number" class="form-control" id="base_salary" name="base_salary">
+              </div>
+
+              <div class="form-group">
+                <label for="hra">HRA</label>
+                <input type="number" class="form-control" id="hra" name="hra">
+              </div>
+
+              <div class="form-group">
+                <label for="da">DA</label>
+                <input type="number" class="form-control" id="da" name="da">
+              </div>
+
+              <div class="form-group">
+                <label for="ta">TA</label>
+                <input type="number" class="form-control" id="ta" name="ta">
+              </div>
+
+              <div class="form-group">
+                <label for="pf">PF</label>
+                <input type="number" class="form-control" id="pf" name="pf">
+              </div>
+
+              <div class="form-group">
+                <label for="working_days">Working Days</label>
+                <input type="number" class="form-control" id="working_days" name="working_days">
+              </div>
+
+              <div class="form-group">
+                <label for="leaves">Leaves</label>
+                <input type="number" class="form-control" id="leaves" name="leaves">
+              </div>
+
+              <button class="btn btn-lg btn-outline-success btn-block" type="submit">Add Record</button>
+              <button class="btn btn-lg btn-outline-danger btn-block" type="reset">Reset</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+ {% if request.GET.saved %}
+    <script> alert("Data is Recorded") </script>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,7 @@
+body{
+    background-color: #ccc;
+}
+
+.card-title{
+    text-transform: capitalize;
+}
